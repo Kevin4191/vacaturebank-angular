@@ -1,0 +1,118 @@
+.vacancy-lists {
+    position: relative;
+    top: 200px;
+    left: 125px;
+
+}
+/* .vacancy-list-viewport {
+    height: 200px;
+    width: 100%;
+    border: 1px solid black;
+  }.vacancy-alternate {
+    background: rgba(127, 127, 127, 0.3);
+  } */
+.mat-mdc-list-item {
+    height: auto;
+}
+
+.results {
+    font-size: 20px;
+}
+
+.vacancy-list {
+    width: 320px;
+    height: 120px;
+    border-radius: 12px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    background-color: white;
+    margin-bottom: 30px;
+    
+}
+
+.vacancy-list .mat-mdc-list-item {
+    padding-left: 15px;
+    padding-top: 1px;
+    height: auto !important;
+}
+
+.sub-list {
+    padding: 5px;
+    text-align: center;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+
+.selected-vacancy {
+    position: relative;
+    /* left: 500px;
+    top: 245px; */
+    top: -670px;
+    left: 350px;
+    padding-top: 25px;
+    padding-left: 10px;
+    height: 600px;
+    min-height: 500px;
+    width: 750px;
+    border-radius: 15px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.selected-vacancy .mat-mdc-list-item {
+    height: auto;
+}
+
+.selected-vacancy .function-desc {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.selected-vacancy .selected-vacancy-desc{
+    margin-top: 10px;
+    height: 250px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow: auto;
+    color: black;
+}
+
+
+.selected-vacancy .mat-mdc-list-item .selected-vacancy-location {
+    margin-top: 10px;
+}
+
+.selected-vacancy .mat-mdc-list-item .selected-vacancy-salary {
+    margin-top: 10px;
+}
+
+.selected-vacancy .sub-list-contact-two {
+    position: flex;
+    top: -135px;
+    left: 350px;
+}
+
+.selected-vacancy .mat-mdc-list-item .selected-vacancy-working-hours {
+    margin-top: 8px;
+}
+
+.selected-vacancy .mat-mdc-list-item .selected-vacancy-branch {
+    margin-top: 8px;
+}
+.selected-vacancy .mat-mdc-list-item .sign-up-vacancy-btn-list-item{
+    height: auto;
+}
+.selected-vacancy .sign-up-vacancy-btn{
+    position: flex;
+    left: 190px;
+    height: 50px;
+    width: 150px;
+    border-radius: 10px;
+    color: white;
+    background-color: #27C468;
+    font-weight: bolder;
+}

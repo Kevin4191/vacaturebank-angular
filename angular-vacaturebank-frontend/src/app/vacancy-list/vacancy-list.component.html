@@ -1,0 +1,81 @@
+<div class="vacancy-lists">
+    <span class="results">{{vacancyListCount}} resultaten</span>
+    
+    <mat-list (click)="getIndex(newIndex)" class="vacancy-list"
+        *ngFor="let vacancy of vacancies; let newIndex = index;"[style.border]="selectedVacancy == newIndex ? '2px solid #2B568D' : ''">
+        <mat-list-item>
+            <span matListItemTitle class="vacancy-name" style="font-size: 18px;">{{this.vacancy.vacancyName}}</span>
+        </mat-list-item>
+        <mat-list-item>
+            <span matListItemTitle class="company-company">{{this.vacancy.employer.employerCompany}}</span>
+        </mat-list-item>
+        <mat-list-item>
+            <span matListItemTitle class="company-location">{{this.vacancy.employer.employerLocation}}</span>
+        </mat-list-item>
+        <mat-list-item class="sub-list-mat">
+            <span matListItemTitle>
+                <span class="sub-list">{{this.vacancy.vacancySalary}}</span>
+                <span class="sub-list">{{this.vacancy.vacancyEducation}}</span>
+                <span class="sub-list">{{this.vacancy.vacancyWorkingHours}}</span>
+            </span>
+        </mat-list-item>
+    </mat-list>
+
+    <!-- Selected vacancies list -->
+    <mat-list class="selected-vacancy">
+        <mat-list-item>
+            <span matListItemTitle class="vacancy-name"
+                style="font-size: 25px">{{this.vacancies[selectedVacancy].vacancyName}}</span>
+        </mat-list-item>
+        <mat-list-item>
+            <span matListItemTitle class="function-desc">Functieomschrijving</span>
+            <p matListItemLine class="selected-vacancy-desc">{{this.vacancies[selectedVacancy].vacancyDescription}}</p>
+        </mat-list-item>
+        <mat-list>
+            <mat-list-item>
+                <span matListItemTitle style="font-size: 20px; font-weight: bolder;">Contact</span>
+            </mat-list-item>
+            <mat-list-item class="sub-list-contact-one">
+                <p matListItemTitle class="selected-vacancy-employer">
+                    <fa-icon [icon]="faUser"></fa-icon>
+                    {{this.vacancies[selectedVacancy].employer.user[0].userName}}
+                </p>
+                <p matListItemTitle class="selected-vacancy-location">
+                    <fa-icon [icon]="faLocationDot"></fa-icon>
+                    {{this.vacancies[selectedVacancy].vacancyLocation}}
+                </p>
+                <p matListItemTitle class="selected-vacancy-salary">
+                    <fa-icon [icon]="faEuroSign"></fa-icon>
+                    {{this.vacancies[selectedVacancy].vacancySalary}}
+                </p>
+            </mat-list-item>
+            <br>
+            <mat-list-item class="sub-list-contact-two">
+                <p matListItemTitle class="selected-vacancy-education">
+
+                    <fa-icon [icon]="faGraduationCap"></fa-icon>
+                    {{this.vacancies[selectedVacancy].vacancyEducation}}
+                </p>
+                <p matListItemTitle class="selected-vacancy-working-hours">
+                    <fa-icon [icon]="faClock"></fa-icon>
+                    {{this.vacancies[selectedVacancy].vacancyWorkingHours}}
+                </p>
+                <p matListItemTitle class="selected-vacancy-branch">
+                    <fa-icon [icon]="faScrewdriverWrench"></fa-icon>
+                    {{this.vacancies[selectedVacancy].branches.branchName}}
+                </p>
+                <button mat-flat-button class="sign-up-vacancy-btn">Inschrijven</button>
+            </mat-list-item>
+      
+
+        </mat-list>
+
+
+
+
+
+
+    </mat-list>
+
+
+</div>
