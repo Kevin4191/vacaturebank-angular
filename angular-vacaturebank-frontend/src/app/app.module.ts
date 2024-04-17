@@ -8,9 +8,13 @@ import { VacancyListComponent } from './vacancy-list/vacancy-list.component';
 import { CommonModule } from '@angular/common';
 import {MatListModule} from '@angular/material/list';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

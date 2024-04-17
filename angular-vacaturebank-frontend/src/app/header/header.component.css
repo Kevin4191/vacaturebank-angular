@@ -1,0 +1,50 @@
+.header {
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.header-top {
+    height: 50px;
+    background-color: #2B568D;
+}
+
+.header-bottom {
+    height: 100px;
+    background-color: white;
+}
+
+.header-center {
+    display: flex;
+    margin: auto;
+    width: 1140px;
+    justify-content: space-between;
+}
+
+.header-logo {
+    display: flex;
+    width: 220px;
+    height: 100px;
+    background-image: url('../../assets/alogo-4.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -20px;
+}
+.header-logo>a {
+    width: 100%;
+    height: 100%;
+}
+
+.profile-window {
+    padding-top: 18px;
+    display: flex;
+    justify-content: flex-end;
+    width: 220px;
+    height: 100px;
+    
+}
+
+
+.profile-window-svg{
+    
+    font-size: 45px;
+}

@@ -1,0 +1,32 @@
+.dialog-header {
+    height: 50px;
+    width: 100%;
+    margin: 0px;
+    background-color: #2F72C8;
+    border-bottom: 2px solid black;
+}
+
+.mat-mdc-dialog-title {
+    height: 100%;
+    padding-top: 1px;
+    text-align: center;
+    font-size: 40px;
+    color: white;
+}
+
+.mat-mdc-dialog-content {
+    text-align: center;
+    overflow-y: hidden !important;
+}
+
+p {
+    margin: 3px;
+    color: black;
+    font-weight: bolder;
+}
+.mat-mdc-dialog-actions {
+    justify-content: flex-end;
+}
+.mat-mdc-button{
+    font-size: 10px !important;
+}

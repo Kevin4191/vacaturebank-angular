@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
-import { VacancyService } from './service/vacancy-service.service';
-import { Vacancy } from './model/vacancy';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
