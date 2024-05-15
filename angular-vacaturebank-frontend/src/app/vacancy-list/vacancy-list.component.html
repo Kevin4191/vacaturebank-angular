@@ -111,7 +111,7 @@
                     <fa-icon [icon]="faScrewdriverWrench"></fa-icon>
                     {{ this.vacancies[selectedVacancy].branches.branchName }}
                 </p>
-                <button mat-flat-button class="sign-up-vacancy-btn">Inschrijven</button>
+                <button mat-flat-button (click)="openSignUpForm(this.vacancies[selectedVacancy])" class="sign-up-vacancy-btn">Inschrijven</button>
             </mat-list-item>
         </mat-list>
     </mat-list>

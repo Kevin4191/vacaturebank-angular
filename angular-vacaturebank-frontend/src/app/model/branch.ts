@@ -1,4 +1,4 @@
-export interface Branch {
-    branchId: number;
-    branchName: string;
+export class Branch {
+    branchId!: number;
+    branchName!: string;
   }

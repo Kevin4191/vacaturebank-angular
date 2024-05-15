@@ -11,6 +11,10 @@ import { faUser, faLocationDot, faEuroSign, faScrewdriverWrench, faClock, faGrad
 import { MatButtonModule } from '@angular/material/button';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { SignUpFormDialogComponent } from './sign-up-form-dialog/sign-up-form-dialog.component';
+import { MailService } from '../service/mail-service.service';
+import { mailStructure } from '../model/mailStructure';
 
 @Component({
   selector: 'app-vacancy-list',
@@ -44,11 +48,11 @@ export class VacancyListComponent implements OnInit {
   brancheList: string[] = ['ICT/IT'];
   maxHourList: string[] = ['20', '32', '40'];
   minHourList: string[] = ['20', '32', '40'];
-
   faGraduationCap = faGraduationCap
-
-  constructor(private vacancyService: VacancyService, private userService: UserService) {
+  constructor(private vacancyService: VacancyService, private mailService: MailService, public dialog: MatDialog) {
+  
   }
+
   ngOnInit() {
     this.fetchVacancies();
 
@@ -69,6 +73,25 @@ export class VacancyListComponent implements OnInit {
         console.error('Error fetching vacancies:', error);
       }
     );
+  }
+  openSignUpForm(vacancy:Vacancy) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      dialogConfig: dialogConfig,
+      vacancy: vacancy
+    } 
+    dialogConfig.autoFocus = true;   
+    dialogConfig.width = '280px';
+    dialogConfig.height = 'auto';
+    dialogConfig.panelClass = 'sign-up-form-dialog';
+    const dialogRef = this.dialog.open(SignUpFormDialogComponent, dialogConfig)
+
+    dialogRef.afterClosed().subscribe(res => {
+      this.postMail(res.mail, res.files);
+    })
+  }
+  postMail(mail: mailStructure, files: FormData){
+    this.mailService.postMail(mail, files);
   }
 
 

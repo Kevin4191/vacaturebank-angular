@@ -1,0 +1,51 @@
+.mat-mdc-dialog-title {
+    height: 100%;
+    padding-top: 1px;
+    text-align: left;
+    font-size: 25px;
+
+}
+
+.mat-mdc-dialog-content {
+    text-align: center;
+    overflow-y: hidden !important;
+    display: inline-block;
+}
+
+.mat-mdc-form-field {
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-input-label {
+    padding: 3px;
+    border-radius: 10px;
+    color: black;
+}
+
+.file-error {
+    font-weight: bolder;
+    color: red;
+}
+
+.mat-mdc-dialog-actions {
+    justify-content: flex-end;
+}
+
+.cancel-button {
+    border-radius: 10px;
+    font-size: 15px !important;
+    background-color: rgb(240, 232, 232);
+}
+
+.send-button {
+    border-radius: 10px;
+    font-size: 15px !important;
+    font-weight: bolder;
+    color: white;
+    background-color: #27C468;
+}
