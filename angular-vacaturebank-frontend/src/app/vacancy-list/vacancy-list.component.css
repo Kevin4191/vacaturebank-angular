@@ -145,7 +145,7 @@
 }
 
 .selected-vacancy .sub-list-contact-two {
-    position: flex;
+    margin-top: 20px;
     top: -135px;
     left: 350px;
 }
