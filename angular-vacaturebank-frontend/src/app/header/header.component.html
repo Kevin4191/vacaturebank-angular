@@ -1,19 +1,23 @@
 <div class="header">
-    <div class="header-top"></div>
-    <div class="header-bottom">
-        <div class="header-center">
-            <div class="header-logo">
-                <a href="/home"></a>
-            </div>
+  <div class="header-top"></div>
+  <div class="header-bottom">
+    <div class="header-center">
+      <div class="header-logo">
+        <a href="/home"></a>
+      </div>
 
-            <div class="profile-window" >
-                <div class="profile-window-img">
-                    <fa-icon (click)="openDialog($event)" [icon]="faUserCircle" class="profile-window-svg"></fa-icon>
-                </div>
-
-            </div>
+      <div style="display: flex; justify-content: center;">
+        <a href="/create"><button mat-flat-button type="button">Vacature Toevoegen</button></a>
+        <div class="profile-window">
+          <div class="profile-window-img">
+            <fa-icon
+              (click)="openDialog($event)"
+              [icon]="faUserCircle"
+              class="profile-window-svg"
+            ></fa-icon>
+          </div>
         </div>
-
-
+      </div>
     </div>
+  </div>
 </div>

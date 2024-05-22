@@ -17,13 +17,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProfileWindowDialogComponent } from './header/profile-window-dialog/profile-window-dialog.component';
 import { MatButton } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
+import { CreateVacancyComponent } from './create-vacancy/create-vacancy.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
     ProfileWindowDialogComponent,
-    SignUpFormDialogComponent
+    SignUpFormDialogComponent,
+    FooterComponent,
+    CreateVacancyComponent
   ],
   imports: [
     BrowserModule,

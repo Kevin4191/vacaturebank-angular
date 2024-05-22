@@ -1,0 +1,24 @@
+.flex-container{
+    background-color: #131313;
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.container{
+    width: 1140px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 12px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: orange;
+}

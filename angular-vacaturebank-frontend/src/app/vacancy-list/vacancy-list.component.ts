@@ -73,13 +73,9 @@ export class VacancyListComponent implements OnInit {
   maxHourList: string[] = ['12', '16', '20', '24', '28', '32', '36', '40'];
   locationControl = new FormControl();
   selectedLocation: any;
-  searchForm: FormGroup;
- 
+
   constructor(private vacancyService: VacancyService, private userService: UserService, private filterPipe: FilterPipe, private http: HttpClient, private mailService: MailService, public dialog: MatDialog) {
-    this.setupLocationAutocomplete();
-    this.searchForm = new FormGroup({
-      distanceOption: new FormControl('') // FormControl for distance select
-    });
+
   }
 
   ngOnInit() {
@@ -90,7 +86,7 @@ export class VacancyListComponent implements OnInit {
     if (this.filteredVacancies.length > 0) {
       this.selectedVacancy = this.filteredVacancies[0];
     }
-    
+
   }
 
   getIndex(vacancy: Vacancy) {
@@ -111,13 +107,13 @@ export class VacancyListComponent implements OnInit {
       }
     );
   }
-  openSignUpForm(vacancy:Vacancy) {
+  openSignUpForm(vacancy: Vacancy) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       dialogConfig: dialogConfig,
       vacancy: vacancy
-    } 
-    dialogConfig.autoFocus = true;   
+    }
+    dialogConfig.autoFocus = true;
     dialogConfig.width = '280px';
     dialogConfig.height = 'auto';
     dialogConfig.panelClass = 'sign-up-form-dialog';
@@ -127,7 +123,7 @@ export class VacancyListComponent implements OnInit {
       this.postMail(res.mail, res.files);
     })
   }
-  postMail(mail: mailStructure, files: FormData){
+  postMail(mail: mailStructure, files: FormData) {
     this.mailService.postMail(mail, files);
   }
 
@@ -140,20 +136,38 @@ export class VacancyListComponent implements OnInit {
       const vacancyDateSplit = this.selectedVacancy?.vacancyUploadDate?.split(' ');
       this.vacancyDate = vacancyDateSplit ? vacancyDateSplit[0] : undefined;
     }
-
-    const selectedLocation = this.searchForm.get('searchLocation')?.value;
-    this.searchLocations(selectedLocation).subscribe(
-    (details) => {
-      console.log('Location Details:', details);
-      // Do further processing with location details
-    },
-    (error) => {
-      console.error('Error fetching location details:', error);
-    }
-  );
   }
 
+
   updateFilteredVacancies(): void {
+    const selectedLocation = this.filters.get('searchLocation')?.value;
+    const selectedDistance = this.filters.get('distanceOption')?.value;
+    const goeieDistance: any = selectedDistance?.split('km') + "000";
+    let matchesLocation: any = '';
+    if (selectedLocation) {
+      this.searchLocations(selectedLocation).subscribe(
+        (details) => {
+          this.getLocationDetails(details[0].latitude, details[0].longitude, goeieDistance).subscribe(
+            (detailsResponse) => {
+              const vacancyLocations = this.filteredVacancies
+              this.filteredVacancies = vacancyLocations.filter(vacancy => {
+                return detailsResponse.response.docs.some((responseLocation: any) => {
+                  const responseLocationName = responseLocation.weergavenaam.split(',')[0];
+                  return vacancy.vacancyLocation === responseLocationName;
+                });
+              });
+            },
+            (error) => {
+              console.error('Error fetching location details:', error);
+            }
+          );
+        },
+        (error) => {
+          console.error('Error fetching location details:', error);
+        }
+      );
+    }
+
     const salaryOptionValue = this.filters.value.salaryOption;
     let chosenSalary: number | undefined;
 
@@ -166,7 +180,7 @@ export class VacancyListComponent implements OnInit {
     this.filteredVacancies = this.vacancies.filter(vacancy => {
       let minHour: number | undefined;
       let maxHour: number | undefined;
-      if(vacancy.vacancyWorkingHours.length > 2){
+      if (vacancy.vacancyWorkingHours.length > 2) {
         const hourRange = vacancy.vacancyWorkingHours.split('-');
         minHour = parseInt(hourRange[0], 10);
         maxHour = parseInt(hourRange[1], 10);
@@ -175,7 +189,7 @@ export class VacancyListComponent implements OnInit {
         minHour = vacancyWorkingHoursInt;
         maxHour = vacancyWorkingHoursInt;
       }
-      
+
       let vacancySalary: number | undefined;
       if (vacancy.vacancySalary.length >= 8) {
         const salaryRange = vacancy.vacancySalary.split('-');
@@ -185,34 +199,21 @@ export class VacancyListComponent implements OnInit {
       }
 
       const matchesSearch = !this.searchValue || vacancy.vacancyName.toLowerCase().includes(this.searchValue.toLowerCase());
-      // const matchesLocation = !this.searchLocation || vacancy.vacancyLocation.toLowerCase().includes(this.searchLocation.toLowerCase());
       const selectedBrancheOptionValue = this.filters.value.brancheOption;
       const matchesBranch = !selectedBrancheOptionValue || vacancy.branches.branchName === selectedBrancheOptionValue;
       const selectedEduOptionValue = this.filters.value.eduOption;
       const matchesEdu = !selectedEduOptionValue || vacancy.vacancyEducation === selectedEduOptionValue;
       const matchesSalary = !chosenSalary || chosenSalary === undefined || vacancySalary === undefined || vacancySalary >= chosenSalary;
       const selectedMinHoursOptionValue = this.filters.value.minHourOption !== null && this.filters.value.minHourOption !== undefined ?
-      parseInt(this.filters.value.minHourOption, 10) :
-      NaN;
+        parseInt(this.filters.value.minHourOption, 10) :
+        NaN;
       const matchesMinHours = !selectedMinHoursOptionValue || minHour === undefined || minHour >= selectedMinHoursOptionValue;
       const selectedMaxHoursOptionValue = this.filters.value.maxHourOption !== null && this.filters.value.maxHourOption !== undefined ?
-      parseInt(this.filters.value.maxHourOption, 10) :
-      NaN;
-      const matchesMaxHours =  !selectedMaxHoursOptionValue || maxHour === undefined || maxHour <= selectedMaxHoursOptionValue;
-
-      // return matchesSearch && matchesLocation && matchesBranch && matchesEdu && matchesSalary && matchesMinHours && matchesMaxHours;
+        parseInt(this.filters.value.maxHourOption, 10) :
+        NaN;
+      const matchesMaxHours = !selectedMaxHoursOptionValue || maxHour === undefined || maxHour <= selectedMaxHoursOptionValue;
+      
       return matchesSearch && matchesBranch && matchesEdu && matchesSalary && matchesMinHours && matchesMaxHours;
-    });
-  }
-
-  // Function to autocomplete input data
-  private setupLocationAutocomplete() {
-    this.locationControl.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((query: string) => this.searchLocations(query))
-    ).subscribe((locations: any[]) => {
-      // Handle autocomplete suggestions here
     });
   }
 
@@ -231,24 +232,15 @@ export class VacancyListComponent implements OnInit {
   }
 
   // Function to get location details
-  getLocationDetails(location: any): Observable<any> {
-    const apiUrl = `https://nominatim.openstreetmap.org/reverse?lat=${location.latitude}&lon=${location.longitude}&format=json`;
+  getLocationDetails(latitude: any, longitude: any, distance: any): Observable<any> {
+    const apiUrl = `https://api.pdok.nl/bzk/locatieserver/search/v3_1/reverse?lat=${latitude}&lon=${longitude}&type=woonplaats&distance=${distance}&fl=weergavenaam&start=0&rows=100&wt=json`;
+  
+    const respo = this.http.get<any>(apiUrl).pipe(
+      map(response => response.map((item: any) => ({
+        name: item,
+      })))
+    );
 
     return this.http.get<any>(apiUrl);
-  }
-
-  // Function to handle location selection
-  handleLocationSelection() {
-    if (this.selectedLocation) {
-      this.getLocationDetails(this.selectedLocation).subscribe(
-        (details) => {
-          console.log('Location Details:', details);
-          // Display the location details to the user
-        },
-        (error) => {
-          console.error('Error fetching location details:', error);
-        }
-      );
-    }
   }
 }

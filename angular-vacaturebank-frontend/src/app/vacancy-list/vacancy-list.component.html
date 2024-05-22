@@ -5,12 +5,8 @@
                 [(ngModel)]="searchValue"  (keyup.enter)="filterVacancies()"/>
             <input id="plaats" type="text" formControlName="searchLocation" placeholder="Plaats"
             [(ngModel)]="searchLocation" />
-            <!-- [matAutocomplete]="auto" -->
-                <!-- <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onLocationSelected($event)">
-                  
-                </mat-autocomplete> -->
             <select formControlName="distanceOption" id="distanceOption">
-                <option value="" selected>+0km</option>
+                <option value="" selected>0km</option>
                 <option [value]="5">5km</option>
                 <option [value]="10">10km</option>
                 <option [value]="15">15km</option>
@@ -86,7 +82,7 @@
         </mat-list>
         <mat-list class="vacancy-list">
             <mat-list-item>
-                <span matListItemTitle class="vacancy-name" style="font-size: 20px">Bent u een Employer?<br>Voeg hier uw
+                <span matListItemTitle class="vacancy-name" style="font-size: 20px">Bent u een werkgever?<br>Voeg hier uw
                     vacature toe!</span>
             </mat-list-item>
         </mat-list>

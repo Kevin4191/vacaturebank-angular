@@ -38,7 +38,7 @@
     padding-top: 18px;
     display: flex;
     justify-content: flex-end;
-    width: 220px;
+    width: 100px;
     height: 100px;
     
 }
@@ -47,4 +47,12 @@
 .profile-window-svg{
     
     font-size: 45px;
+}
+
+button{
+    background-color: #27C468 !important;
+    color: white !important;
+    width: 150px;
+    margin-top: 27px;
+    height: 45px;
 }
