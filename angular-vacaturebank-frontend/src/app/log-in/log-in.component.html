@@ -1,87 +1,50 @@
 <div class="header">
-    <div class="header-top"></div>
-    <div class="header-bottom">
-        <div class="header-center">
-            <div class="header-logo">
-                <a href="/home"></a>
-            </div>
-
-
-        </div>
+  <div class="header-top"></div>
+  <div class="header-bottom">
+    <div class="header-center">
+      <a href="/home">
+        <div class="header-logo"></div>
+      </a>
     </div>
-    <div class="setWidth">
-        <div class="container">
-            <div class="info">
-                <h1>Welkom op Bank der Vacatures!</h1>
-                <img src="../../assets/alogo-4.png" height="150" width="195" />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-            </div>
-            <div class="form" [formGroup]="logInForm">
-
-                <h1>Log hier in met uw account!</h1>
-                <mat-form-field>
-                    <mat-label>Emailadress</mat-label>
-                    <input matInput formControlName="userEmail">
-                </mat-form-field>
-
-                <mat-form-field>
-                    <mat-label>Wachtwoord</mat-label>
-                    <input matInput formControlName="userPassword" type="password">
-                </mat-form-field>
-                <span class="email-error" *ngIf="this.noEmail">
-                    Voer een geldige emailadress in
-                </span>
-                <br />
-                <span class="password-error" *ngIf="this.noPassword">
-                    Voer een geldige wachtwoord in
-                </span>
-                <mat-action-list>
-                    <button mat-button (click)="logIn()" class="login-button">Inloggen</button>
-                </mat-action-list>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- </div>
+  </div>
+  <div class="setWidth">
+    <div class="container">
+      <div class="info">
+        <h1>Welkom op Bank der Vacatures!</h1>
+        <img src="../../assets/alogo-4.png" height="150" width="195" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
+      <div class="form">
+        <div class="formgroup" [formGroup]="logInForm">
+          <h2 style="margin-bottom: 10px">Log hier in met uw account!</h2>
+          <span class="email-error" *ngIf="this.noEmail">
+            Voer een geldige emailadress in
+          </span>
+          <mat-form-field>
+            <mat-label>Emailadress</mat-label>
+            <input matInput formControlName="userEmail" />
+          </mat-form-field>
+          <span class="password-error" *ngIf="this.noPassword">
+            Voer een geldige wachtwoord in
+          </span>
+          <mat-form-field>
+            <mat-label>Wachtwoord</mat-label>
+            <input matInput formControlName="userPassword" type="password"  (keyup.enter)="logIn()"/>
+          </mat-form-field>
+          <mat-action-list>
+            <button mat-button (click)="logIn()" class="login-button">
+              Inloggen
+            </button>
+          </mat-action-list>
         </div>
       </div>
-    <div class="login-screen-center">
-        <div class="login-screen-container">
-            <div class="login-screen-left">
+    </div>
+  </div>
 
-                <h1>Welkom op Bank Der Vacatures!</h1>
-                <div class="header-logo"></div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-
-
-            </div>
-            <div class="login-screen-right" [formGroup]="logInForm">
-
-                <h1>Log hier in met uw account!</h1>
-                <mat-form-field>
-                    <mat-label>Emailadress</mat-label>
-                    <input matInput formControlName="userEmail">
-                </mat-form-field>
-
-                <mat-form-field>
-                    <mat-label>Wachtwoord</mat-label>
-                    <input matInput formControlName="userPassword">
-                </mat-form-field>
-                <span class="email-error" *ngIf="this.noEmail">
-                    Voer een geldige emailadress in
-                </span>
-                <br/>
-                <span class="password-error" *ngIf="this.noPassword">
-                    Voer een geldige wachtwoord in
-                </span>
-                <mat-action-list>
-                    <button mat-button (click)="logIn()" class="login-button">Inloggen</button>
-                </mat-action-list>
-            </div>
-        </div>
-    </div> -->
+  <app-footer />
+</div>
