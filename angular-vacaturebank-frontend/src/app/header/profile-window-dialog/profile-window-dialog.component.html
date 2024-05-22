@@ -10,8 +10,16 @@
 </mat-dialog-content>
 
 <ng-template #loginPrompt>
-    <button (click)="redirectToLogIn()">Log in</button>
+    <mat-dialog-content>
+        <p>Druk op deze knop om in te loggen!</p>
+    </mat-dialog-content>
+
+
+
+    <button (click)="redirectToLogIn()" mat-button class="log-in-btn">Log in</button>
 </ng-template>
+
+
 
 <mat-dialog-actions *ngIf="token;">
     <button (click)="logOut()" mat-button class="log-out-btn" color="warn">Uitloggen</button>

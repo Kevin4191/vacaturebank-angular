@@ -22,9 +22,11 @@ export class HeaderComponent {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.panelClass = 'profile-window-dialog';
+    dialogConfig.height = '200px';
+    dialogConfig.width = '250px';
     dialogConfig.position = {
       top: targetAttr.y + targetAttr.height + 10 + "px",
-      left: targetAttr.x - targetAttr.width - 20 + "px"
+      left: targetAttr.x - targetAttr.width - 56 + "px"
     }
     if (this.userService.userDTO) {
       dialogConfig.data = {
