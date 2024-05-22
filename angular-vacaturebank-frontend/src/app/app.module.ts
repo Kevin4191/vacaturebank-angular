@@ -17,6 +17,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProfileWindowDialogComponent } from './header/profile-window-dialog/profile-window-dialog.component';
 import { MatButton } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LogInComponent } from './log-in/log-in.component';
+import { AuthGuard } from './auth.guard';
 import { FooterComponent } from './footer/footer.component';
 import { CreateVacancyComponent } from './create-vacancy/create-vacancy.component';
 @NgModule({
@@ -27,7 +29,8 @@ import { CreateVacancyComponent } from './create-vacancy/create-vacancy.componen
     ProfileWindowDialogComponent,
     SignUpFormDialogComponent,
     FooterComponent,
-    CreateVacancyComponent
+    CreateVacancyComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { CreateVacancyComponent } from './create-vacancy/create-vacancy.componen
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    AuthGuard, 
   ],
   bootstrap: [AppComponent]
 })

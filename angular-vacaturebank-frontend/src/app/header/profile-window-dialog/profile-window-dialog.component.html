@@ -3,10 +3,16 @@
         <fa-icon [icon]="faUserCircle"></fa-icon>
     </h2>
 </div>
-<mat-dialog-content>
-    <p>Gebruikersnaam</p>
-    <p>Emailadress</p>
+
+<mat-dialog-content *ngIf="token; else loginPrompt">
+    <p>{{userName}}</p>
+    <p>{{userEmail}}</p>
 </mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button class="log-out-btn" color="warn">Uitloggen</button>
+
+<ng-template #loginPrompt>
+    <button (click)="redirectToLogIn()">Log in</button>
+</ng-template>
+
+<mat-dialog-actions *ngIf="token;">
+    <button (click)="logOut()" mat-button class="log-out-btn" color="warn">Uitloggen</button>
   </mat-dialog-actions>

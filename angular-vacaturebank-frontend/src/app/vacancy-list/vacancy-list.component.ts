@@ -101,6 +101,7 @@ export class VacancyListComponent implements OnInit {
       (data: Vacancy[]) => {
         this.vacancies = data;
         this.updateFilteredVacancies();
+        this.getIndex(this.vacancies[0])
       },
       (error: any) => {
         console.error('Error fetching vacancies:', error);
