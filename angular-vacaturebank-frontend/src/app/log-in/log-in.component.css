@@ -1,0 +1,88 @@
+.header {
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.header-top {
+    height: 50px;
+    background-color: #2B568D;
+}
+
+.header-bottom {
+    height: 100px;
+    background-color: white;
+}
+
+.header-center {
+    display: flex;
+    margin: auto;
+    width: 1140px;
+    justify-content: space-between;
+}
+
+.header-logo {
+    display: flex;
+    width: 220px;
+    height: 100px;
+    background-image: url('../../assets/alogo-4.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -20px;
+}
+
+
+.setWidth{
+    width: 1140px;
+    margin: auto
+}
+
+.container{
+    display: flex;
+    height: 600px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.info{
+    background: linear-gradient(to bottom, #2c578e 0%, #4670a7 79%, #4a75ac 100%);
+    height: 100%;
+    width: 50%;
+    border-radius: 15px 0 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.info h1,
+.info p,
+.info img{
+    text-align: center;
+    align-self: center;
+}
+
+.info h1{
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: -30px;
+}
+.info p{
+    color: white;
+}
+
+.form{
+    height: 100%;
+    width: 50%;
+    background-color: white;
+    border-radius: 0 15px 15px 0;
+}
+
+.login-button{
+    width: 150px;
+    border-radius: 10px;
+    font-size: 15px !important;
+    font-weight: bolder;
+    color: white !important;
+    background-color: #27C468;
+}
