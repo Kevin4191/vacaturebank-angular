@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, ValueFromNotification, map, of } from 'rxjs';
+import { Observable, ValueFromNotification, catchError, map, of, throwError } from 'rxjs';
 import { Vacancy } from '../model/vacancy';
 @Injectable({
   providedIn: 'root'
@@ -24,14 +24,6 @@ export class VacancyService {
         this.vacancies = data;
         return this.vacancies;
       })
-    );
-  }
-
-  updateVacancy(vacancy: Vacancy, id: number){
-    console.log('x')
-    return this.http.patch<any>(`${this.vacancyUrl}/patch/vacancy/${id}`, vacancy).subscribe(
-      res => console.log(res),
-      err => console.log(err)
     );
   }
 

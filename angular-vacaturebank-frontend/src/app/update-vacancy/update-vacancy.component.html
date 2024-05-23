@@ -21,7 +21,11 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Branch</mat-label>
-            <input matInput formControlName="vacancyBranch" />
+            <mat-select formControlName="vacancyBranch" id="brancheOption">
+              <mat-option *ngFor="let branche of brancheList" [value]="branche">
+                {{ branche }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Uren</mat-label>

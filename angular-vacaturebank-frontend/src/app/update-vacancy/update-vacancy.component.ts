@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Vacancy } from '../model/vacancy';
 import { VacancyListComponent } from '../vacancy-list/vacancy-list.component';
 import { VacancyService } from '../service/vacancy-service.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Branch } from '../model/branch';
+import { CreateVacancyComponent } from '../create-vacancy/create-vacancy.component';
+import { CreateVacancyService } from '../service/create-vacancy.service';
+
 
 @Component({
   selector: 'app-update-vacancy',
@@ -12,7 +16,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class UpdateVacancyComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private vacancyService: VacancyService, public vacancyForm: FormBuilder) {
+  constructor(private route: ActivatedRoute, private vacancyService: VacancyService, private createVacancyService: CreateVacancyService, public vacancyForm: FormBuilder, private router: Router) {
 
     this.updateVacancyForm = this.vacancyForm.group({
       vacancyName: [''],
@@ -21,7 +25,7 @@ export class UpdateVacancyComponent implements OnInit {
       vacancyLocation: [''],
       vacancyDescription: [''],
       vacancyWorkingHours: [''],
-      vacancyBranch: [''],
+      vacancyBranchesBranchId: [''],
 
     })
 
@@ -30,6 +34,9 @@ export class UpdateVacancyComponent implements OnInit {
   updateVacancyForm!: FormGroup;
   vacancyId!: number;
   selectedVacancy!: Vacancy;
+  branches: Branch[] = [];
+  brancheList: string[] = [];
+  userId: any;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -39,39 +46,52 @@ export class UpdateVacancyComponent implements OnInit {
       this.selectedVacancy = vacancy;
       this.updateForm()
     })
+    this.userId = localStorage.getItem('userId')
   }
   updateForm(): void {
+    const { vacancyName, vacancyEducation, vacancySalary, vacancyLocation, vacancyDescription, vacancyWorkingHours } = this.selectedVacancy;
     this.updateVacancyForm.patchValue({
-      vacancyName: this.selectedVacancy.vacancyName,
-      vacancyEducation: this.selectedVacancy.vacancyEducation,
-      vacancySalary: this.selectedVacancy.vacancySalary,
-      vacancyLocation: this.selectedVacancy.vacancyLocation,
-      vacancyDescription: this.selectedVacancy.vacancyDescription,
-      vacancyWorkingHours: this.selectedVacancy.vacancyWorkingHours,
-      vacancyBranch: this.selectedVacancy.branches.branchName,
+      vacancyName,
+      vacancyEducation,
+      vacancySalary,
+      vacancyLocation,
+      vacancyDescription,
+      vacancyWorkingHours,
+
     });
   }
-
-  extractFormValues(): Vacancy {
-    return {
-      vacancyId: this.vacancyId,
-      vacancyName: this.updateVacancyForm.get('vacancyName')?.value,
-      vacancyEducation: this.updateVacancyForm.get('vacancyEducation')?.value,
-      vacancySalary: this.updateVacancyForm.get('vacancySalary')?.value,
-      vacancyLocation: this.updateVacancyForm.get('vacancyLocation')?.value,
-      vacancyDescription: this.updateVacancyForm.get('vacancyDescription')?.value,
-      vacancyWorkingHours: this.updateVacancyForm.get('vacancyWorkingHours')?.value,
-      branches: { branchId: 1, branchName: this.updateVacancyForm.get('vacancyBranch')?.value,},
-      vacancyBranchesBranchId: 1,
-      vacancyEmployersEmployerId: 1,
-      vacancyUploadDate: '',
-      employer: this.selectedVacancy.employer
-    };
+  removeCircularReferences(obj: any, seen = new WeakSet()): any {
+    if (obj && typeof obj === 'object') {
+      if (seen.has(obj)) {
+        return;
+      }
+      seen.add(obj);
+  
+      const result: any = Array.isArray(obj) ? [] : {};
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          result[key] = this.removeCircularReferences(obj[key], seen);
+        }
+      }
+      return result;
+    }
+    return obj;
+  }
+  
+  updateVacancy(): void {
+    const updatedVacancy = this.extractFormValues();
+    this.createVacancyService.updateVacancy(updatedVacancy, this.vacancyId).subscribe(response => {
+      console.log('Vacancy updated:', response);
+    });
+    this.router.navigate(['/home']);
   }
 
-  updateVacancy() {
-    const updatedVacancy: Vacancy = this.extractFormValues();
-   this.vacancyService.updateVacancy(updatedVacancy, this.vacancyId)
+  extractFormValues(): any {
+    const formValues = this.updateVacancyForm.value;
+    return {
+      ...formValues,
+      vacancyBranchesBranchId: 1, // Example branch ID, replace with actual logic
+    };
   }
 
 }
