@@ -7,6 +7,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Branch } from '../model/branch';
 import { CreateVacancyComponent } from '../create-vacancy/create-vacancy.component';
 import { CreateVacancyService } from '../service/create-vacancy.service';
+import { BranchService } from '../service/branch.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { CreateVacancyService } from '../service/create-vacancy.service';
 })
 export class UpdateVacancyComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private vacancyService: VacancyService, private createVacancyService: CreateVacancyService, public vacancyForm: FormBuilder, private router: Router) {
+  constructor(private route: ActivatedRoute, private vacancyService: VacancyService, private createVacancyService: CreateVacancyService, public vacancyForm: FormBuilder, private router: Router, private branchService: BranchService) {
 
     this.updateVacancyForm = this.vacancyForm.group({
       vacancyName: [''],
@@ -28,8 +29,6 @@ export class UpdateVacancyComponent implements OnInit {
       vacancyBranchesBranchId: [''],
 
     })
-
-
   }
   updateVacancyForm!: FormGroup;
   vacancyId!: number;
@@ -44,9 +43,10 @@ export class UpdateVacancyComponent implements OnInit {
     })
     this.vacancyService.getVacancyById(this.vacancyId).subscribe(vacancy => {
       this.selectedVacancy = vacancy;
-      this.updateForm()
+      this.updateForm();
     })
-    this.userId = localStorage.getItem('userId')
+    this.userId = localStorage.getItem('userId');
+    this.fetchBranchList();
   }
   updateForm(): void {
     const { vacancyName, vacancyEducation, vacancySalary, vacancyLocation, vacancyDescription, vacancyWorkingHours } = this.selectedVacancy;
@@ -66,7 +66,7 @@ export class UpdateVacancyComponent implements OnInit {
         return;
       }
       seen.add(obj);
-  
+
       const result: any = Array.isArray(obj) ? [] : {};
       for (const key in obj) {
         if (obj.hasOwnProperty(key)) {
@@ -77,7 +77,7 @@ export class UpdateVacancyComponent implements OnInit {
     }
     return obj;
   }
-  
+
   updateVacancy(): void {
     const updatedVacancy = this.extractFormValues();
     this.createVacancyService.updateVacancy(updatedVacancy, this.vacancyId).subscribe(response => {
@@ -90,8 +90,23 @@ export class UpdateVacancyComponent implements OnInit {
     const formValues = this.updateVacancyForm.value;
     return {
       ...formValues,
-      vacancyBranchesBranchId: 1, // Example branch ID, replace with actual logic
+      vacancyBranchesBranchId: formValues.vacancyBranchesBranchId.branchId
     };
+  }
+
+  fetchBranchList() {
+    this.branchService.findAllBranches().subscribe(
+      (data: Branch[]) => {
+        this.branches = data;
+        this.branches.forEach(branch => {
+          this.brancheList.push(branch.branchName);
+        });
+
+      },
+      (error: any) => {
+        console.error('Error fetching vacancies:', error);
+      }
+    );
   }
 
 }
