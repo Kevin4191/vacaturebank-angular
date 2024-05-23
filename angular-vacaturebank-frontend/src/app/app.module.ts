@@ -21,6 +21,9 @@ import { LogInComponent } from './log-in/log-in.component';
 import { AuthGuard } from './auth.guard';
 import { FooterComponent } from './footer/footer.component';
 import { CreateVacancyComponent } from './create-vacancy/create-vacancy.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +49,9 @@ import { CreateVacancyComponent } from './create-vacancy/create-vacancy.componen
     MatDialogModule,
     MatButton,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   providers: [
     provideClientHydration(),

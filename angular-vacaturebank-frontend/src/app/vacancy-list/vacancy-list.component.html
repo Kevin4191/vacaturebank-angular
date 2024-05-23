@@ -84,6 +84,7 @@
             <mat-list-item>
                 <span matListItemTitle class="vacancy-name" style="font-size: 20px">Bent u een werkgever?<br>Voeg hier uw
                     vacature toe!</span>
+                    <a href="/create" *ngIf="this.userRole === 'employer'"><button mat-flat-button type="button">Vacature Toevoegen</button></a>
             </mat-list-item>
         </mat-list>
     </div>

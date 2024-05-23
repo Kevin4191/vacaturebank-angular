@@ -16,6 +16,7 @@ export class LogInComponent implements OnInit {
   userPassword: string = '';
   noEmail = false;
   noPassword = false;
+  
 
   constructor(private userService: UserService, private router: Router) {
     this.logInForm = new FormGroup({
@@ -54,6 +55,7 @@ export class LogInComponent implements OnInit {
           localStorage.setItem('userName', res.body.userName);
           localStorage.setItem('userEmail', res.body.userEmail);
           localStorage.setItem('userRole', res.body.userRole );
+          localStorage.setItem('userId', res.body.employersEmployerId);
           this.userService.userDTO = res.body;
           this.router.navigate(['/home']);
         } else {
