@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CreateVacancyService } from '../service/create-vacancy.service';
 import { Branch } from '../model/branch';
 import { BranchService } from '../service/branch.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-vacancy',
@@ -16,7 +17,7 @@ export class CreateVacancyComponent implements OnInit {
   brancheList: string[] = [];
 
 
-  constructor(private createVacancyService: CreateVacancyService, private vacancyForm: FormBuilder, private branchService: BranchService) {
+  constructor(private createVacancyService: CreateVacancyService, private vacancyForm: FormBuilder, private branchService: BranchService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -37,6 +38,7 @@ export class CreateVacancyComponent implements OnInit {
     const formattedData = this.formatFormData(this.createVacancyForm.value);
     if (this.createVacancyForm.valid) {
       this.createVacancyService.createVacancy(formattedData);
+      this.router.navigate(['/home']);
     }
   }
 

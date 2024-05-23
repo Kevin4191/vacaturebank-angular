@@ -39,7 +39,8 @@ export class UpdateVacancyComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.vacancyId = +params.get('vacancyId')! + 1;
+      this.vacancyId =  +params.get('id')!;
+      console.log(this.vacancyId)
     })
     this.vacancyService.getVacancyById(this.vacancyId).subscribe(vacancy => {
       this.selectedVacancy = vacancy;
