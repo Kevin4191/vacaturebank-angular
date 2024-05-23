@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Vacancy } from '../model/vacancy';
+import { Branch } from '../model/branch';
 import { VacancyService } from '../service/vacancy-service.service';
+import { BranchService } from '../service/branch.service';
 import { CommonModule } from '@angular/common';
 import { MatListModule, MatSelectionList } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -48,6 +50,7 @@ export class VacancyListComponent implements OnInit {
   searchValue: any;
   searchLocation: any;
   vacancies: Vacancy[] = [];
+  branches: Branch[] = [];
   vacancyListCount: number = 0;
   selectedVacancy: Vacancy | null = null;
   filteredVacancies: Vacancy[] = [];
@@ -70,26 +73,30 @@ export class VacancyListComponent implements OnInit {
   });
   salaryList: string[] = ['2000+', '3000+', '4000+', '5000+'];
   eduList: string[] = ['MBO', 'HBO', 'WO'];
-  brancheList: string[] = ['ICT/IT', 'SD'];
+  brancheList: string[] = [];
   minHourList: string[] = ['12', '16', '20', '24', '28', '32', '36', '40'];
   maxHourList: string[] = ['12', '16', '20', '24', '28', '32', '36', '40'];
   locationControl = new FormControl();
   selectedLocation: any;
-  userEmail!: any;
+  userRole: any;
+  userEmail: any;
 
-  constructor(private vacancyService: VacancyService, private userService: UserService, private filterPipe: FilterPipe, private http: HttpClient, private mailService: MailService, public dialog: MatDialog, private router: Router) {
-  
+  constructor(private vacancyService: VacancyService, private branchService: BranchService ,private userService: UserService, private filterPipe: FilterPipe, private http: HttpClient, private mailService: MailService, public dialog: MatDialog, private router: Router) {
+
   }
 
   ngOnInit() {
+    this.userRole = localStorage.getItem('userRole');
     this.fetchVacancies();
     this.filterVacancies();
+    this.fetchBranchList();
     this.vacancyListCount = this.vacancies.length;
     this.userEmail = localStorage.getItem('userEmail');
     if (this.filteredVacancies.length > 0) {
       this.selectedVacancy = this.filteredVacancies[0];
     }
 
+    console.log(localStorage.getItem('userRole'));
   }
 
   getIndex(vacancy: Vacancy) {
@@ -97,6 +104,21 @@ export class VacancyListComponent implements OnInit {
 
     const vacancyDateSplit = this.selectedVacancy?.vacancyUploadDate?.split(' ');
     this.vacancyDate = vacancyDateSplit ? vacancyDateSplit[0] : undefined;
+  }
+
+  fetchBranchList(){
+    this.branchService.findAllBranches().subscribe(
+      (data: Branch[]) => {
+        this.branches = data;
+        this.branches.forEach(branch => {
+          this.brancheList.push(branch.branchName);
+        });
+        console.log(this.brancheList);
+      },
+      (error: any) => {
+        console.error('Error fetching vacancies:', error);
+      }
+    );
   }
 
   fetchVacancies() {
@@ -204,6 +226,7 @@ export class VacancyListComponent implements OnInit {
       } else {
         vacancySalary = parseInt(vacancy.vacancySalary, 10);
       }
+
 
       const matchesSearch = !this.searchValue || vacancy.vacancyName.toLowerCase().includes(this.searchValue.toLowerCase());
       const selectedBrancheOptionValue = this.filters.value.brancheOption;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProfileWindowDialogComponent } from './profile-window-dialog/profile-window-dialog.component';
@@ -10,12 +10,17 @@ import { UserService } from '../service/user-service.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 
   constructor(public dialog: MatDialog, private userService: UserService) { }
   userName!: any;
   userEmail!: any; 
   faUserCircle = faCircleUser;
+  userRole: any;
+
+  ngOnInit(){
+    this.userRole = localStorage.getItem('userRole');
+  }
 
   openDialog(event: any) {
     let targetAttr = event.target.getBoundingClientRect();

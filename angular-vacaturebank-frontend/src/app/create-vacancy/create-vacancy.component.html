@@ -8,38 +8,49 @@
     </div>
 
     <div class="form">
-      <div class="vacancyForm">
-        <h2 style="margin-bottom: 10px;">Maak u eigen vacature</h2>
+      <div class="vacancyForm" [formGroup]="createVacancyForm">
+        <h2 style="margin-bottom: 10px">Maak u eigen vacature</h2>
         <mat-dialog-content>
           <mat-form-field>
+            <mat-label>Naam</mat-label>
+            <input matInput formControlName="createVacancyName" />
+          </mat-form-field>
+          <mat-form-field>
             <mat-label>Opleiding</mat-label>
-            <input matInput />
+            <input matInput formControlName="createVacancyEdu" />
           </mat-form-field>
           <mat-form-field>
             <mat-label>Branch</mat-label>
-            <input matInput />
+            <mat-select formControlName="createVacancyBranch" id="brancheOption">
+              <mat-option *ngFor="let branche of brancheList" [value]="branche">
+                {{ branche }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
+          
           <mat-form-field>
             <mat-label>Uren</mat-label>
-            <input matInput />
+            <input matInput formControlName="createVacancyHours" />
           </mat-form-field>
           <mat-form-field>
             <mat-label>Salaris</mat-label>
-            <input matInput />
+            <input matInput formControlName="createVacancySalary" />
           </mat-form-field>
           <mat-form-field>
             <mat-label>Locatie</mat-label>
-            <input matInput />
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Adres</mat-label>
-            <input matInput />
+            <input matInput formControlName="createVacancyLocation" />
           </mat-form-field>
           <mat-form-field class="beschrijvingInput">
             <mat-label>Beschrijving</mat-label>
-            <textarea matInput rows="6"></textarea>
+            <textarea
+              matInput
+              rows="5"
+              formControlName="createVacancyDescription"
+            ></textarea>
           </mat-form-field>
-          <button mat-flat-button type="button">Toevoegen</button>
+          <button mat-flat-button type="button" (click)="onSubmit()">
+            Toevoegen
+          </button>
         </mat-dialog-content>
       </div>
     </div>

@@ -10,8 +10,7 @@ const routes: Routes = [{ path: 'home', component: HomeComponent },
 { path: 'login', component: LogInComponent },
 { path: 'create', component: CreateVacancyComponent, canActivate: [AuthGuard] },
 { path: 'update/:id', component: UpdateVacancyComponent, canActivate: [AuthGuard] },
-{ path: '**', redirectTo: 'home' },
-];
+{ path: '**', redirectTo: 'home' }]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
