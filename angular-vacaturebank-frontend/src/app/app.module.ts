@@ -21,6 +21,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { AuthGuard } from './auth.guard';
 import { FooterComponent } from './footer/footer.component';
 import { CreateVacancyComponent } from './create-vacancy/create-vacancy.component';
+import { UpdateVacancyComponent } from './update-vacancy/update-vacancy.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { CreateVacancyComponent } from './create-vacancy/create-vacancy.componen
     SignUpFormDialogComponent,
     FooterComponent,
     CreateVacancyComponent,
-    LogInComponent
+    LogInComponent,
+    UpdateVacancyComponent
   ],
   imports: [
     BrowserModule,

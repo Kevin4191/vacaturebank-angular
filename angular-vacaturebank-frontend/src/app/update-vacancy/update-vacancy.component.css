@@ -1,0 +1,67 @@
+.setWidth{
+    width: 1140px;
+    margin: auto
+}
+
+.container{
+    display: flex;
+    height: 600px;
+    margin-bottom: 10px;
+}
+
+.info{
+    background: linear-gradient(to bottom, #2c578e 0%, #4670a7 79%, #4a75ac 100%);
+    height: 100%;
+    width: 50%;
+    border-radius: 15px 0 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info span,
+.info img{
+    text-align: center;
+    align-self: center;
+}
+
+.info span{
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: -30px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+    background-color: white;
+    border-radius: 0 15px 15px 0;
+}
+
+.vacancyForm{
+    margin: auto;
+    align-self: center;
+    width: 78%;
+}
+
+.mat-mdc-dialog-content{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+}
+
+.beschrijvingInput{
+    width: 435px;
+}
+
+button{
+    background-color: #27C468 !important;
+    color: white !important;
+    margin-top: -10px;
+    width: 150px;
+    height: 45px;
+}

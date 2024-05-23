@@ -135,7 +135,15 @@
                     <fa-icon [icon]="faScrewdriverWrench"></fa-icon>
                     {{ selectedVacancy.branches.branchName }}
                 </p>
-                <button mat-flat-button (click)="openSignUpForm(selectedVacancy)" class="sign-up-vacancy-btn">Inschrijven</button>
+                <button *ngIf="selectedVacancy.employer.employerEmail == this.userEmail; else signUp " (click)="editVacancy(selectedVacancy.vacancyId)" class="edit-vacancy-btn">Wijzig uw vacature</button>
+                <ng-template #signUp>
+                    <button mat-flat-button 
+                            (click)="openSignUpForm(selectedVacancy)" 
+                            class="sign-up-vacancy-btn">
+                      Inschrijven
+                    </button>
+                  </ng-template>
+              
             </mat-list-item>
         </mat-list>
     </mat-list>

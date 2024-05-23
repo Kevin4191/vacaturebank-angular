@@ -172,6 +172,18 @@
     font-weight: bolder;
 }
 
+.edit-vacancy-btn{
+    margin-top: 5px;
+    position: flex;
+    height: 50px;
+    width: 150px;
+    border-radius: 10px;
+    color: white;
+    background-color: #27C468;
+    font-weight: bolder;
+}
+
+
 .vacancy-lists .vacancy-list.selected{
     border: 2px solid #2B568D;
 }

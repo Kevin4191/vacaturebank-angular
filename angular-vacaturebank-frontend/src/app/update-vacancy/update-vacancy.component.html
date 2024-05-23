@@ -1,0 +1,49 @@
+<app-header />
+
+<div class="setWidth">
+  <div class="container">
+    <div class="info">
+      <span>Welkom op Bank der Vacatures!</span>
+      <img src="../../assets/alogo-4.png" height="150" width="195" />
+    </div>
+
+    <div class="form">
+      <div class="vacancyForm" [formGroup]="updateVacancyForm">
+        <h2 style="margin-bottom: 10px;">Pas uw vacature aan</h2>
+        <mat-dialog-content>
+          <mat-form-field style="width: 435px">
+            <mat-label>Naam</mat-label>
+            <input matInput formControlName="vacancyName" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Opleiding</mat-label>
+            <input matInput formControlName="vacancyEducation" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Branch</mat-label>
+            <input matInput formControlName="vacancyBranch" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Uren</mat-label>
+            <input matInput formControlName="vacancyWorkingHours" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Salaris</mat-label>
+            <input matInput formControlName="vacancySalary" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Locatie</mat-label>
+            <input matInput formControlName="vacancyLocation" />
+          </mat-form-field>
+          <mat-form-field class="beschrijvingInput">
+            <mat-label>Beschrijving</mat-label>
+            <textarea matInput rows="6" formControlName="vacancyDescription"></textarea>
+          </mat-form-field>
+          <button mat-flat-button type="button" (click)="updateVacancy()">Aanpassen</button>
+        </mat-dialog-content>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer />

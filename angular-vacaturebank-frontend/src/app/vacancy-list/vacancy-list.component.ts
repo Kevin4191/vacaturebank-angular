@@ -20,6 +20,8 @@ import { FilterPipe } from '../filter.pipe';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
+import { userDTO } from '../model/userDTO';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-vacancy-list',
@@ -73,16 +75,17 @@ export class VacancyListComponent implements OnInit {
   maxHourList: string[] = ['12', '16', '20', '24', '28', '32', '36', '40'];
   locationControl = new FormControl();
   selectedLocation: any;
+  userEmail!: any;
 
-  constructor(private vacancyService: VacancyService, private userService: UserService, private filterPipe: FilterPipe, private http: HttpClient, private mailService: MailService, public dialog: MatDialog) {
-
+  constructor(private vacancyService: VacancyService, private userService: UserService, private filterPipe: FilterPipe, private http: HttpClient, private mailService: MailService, public dialog: MatDialog, private router: Router) {
+  
   }
 
   ngOnInit() {
     this.fetchVacancies();
     this.filterVacancies();
     this.vacancyListCount = this.vacancies.length;
-
+    this.userEmail = localStorage.getItem('userEmail');
     if (this.filteredVacancies.length > 0) {
       this.selectedVacancy = this.filteredVacancies[0];
     }
@@ -123,6 +126,9 @@ export class VacancyListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       this.postMail(res.mail, res.files);
     })
+  }
+  editVacancy(vacancyId: number){
+    this.router.navigate(['/update',vacancyId]);
   }
   postMail(mail: mailStructure, files: FormData) {
     this.mailService.postMail(mail, files);
@@ -213,7 +219,7 @@ export class VacancyListComponent implements OnInit {
         parseInt(this.filters.value.maxHourOption, 10) :
         NaN;
       const matchesMaxHours = !selectedMaxHoursOptionValue || maxHour === undefined || maxHour <= selectedMaxHoursOptionValue;
-      
+
       return matchesSearch && matchesBranch && matchesEdu && matchesSalary && matchesMinHours && matchesMaxHours;
     });
   }
@@ -235,7 +241,7 @@ export class VacancyListComponent implements OnInit {
   // Function to get location details
   getLocationDetails(latitude: any, longitude: any, distance: any): Observable<any> {
     const apiUrl = `https://api.pdok.nl/bzk/locatieserver/search/v3_1/reverse?lat=${latitude}&lon=${longitude}&type=woonplaats&distance=${distance}&fl=weergavenaam&start=0&rows=100&wt=json`;
-  
+
     const respo = this.http.get<any>(apiUrl).pipe(
       map(response => response.map((item: any) => ({
         name: item,
