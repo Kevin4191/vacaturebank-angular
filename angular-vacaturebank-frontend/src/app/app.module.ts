@@ -21,6 +21,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { AuthGuard } from './auth.guard';
 import { FooterComponent } from './footer/footer.component';
 import { CreateVacancyComponent } from './create-vacancy/create-vacancy.component';
+import { UpdateVacancyComponent } from './update-vacancy/update-vacancy.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 
@@ -33,7 +34,8 @@ import { MatOptionModule } from '@angular/material/core';
     SignUpFormDialogComponent,
     FooterComponent,
     CreateVacancyComponent,
-    LogInComponent
+    LogInComponent,
+    UpdateVacancyComponent
   ],
   imports: [
     BrowserModule,
