@@ -5,6 +5,7 @@ import { ProfileWindowDialogComponent } from './profile-window-dialog/profile-wi
 import { LogInComponent } from '../log-in/log-in.component';
 import { userDTO } from '../model/userDTO';
 import { UserService } from '../service/user-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,7 +13,7 @@ import { UserService } from '../service/user-service.service';
 })
 export class HeaderComponent implements OnInit{
 
-  constructor(public dialog: MatDialog, private userService: UserService) { }
+  constructor(public dialog: MatDialog, private userService: UserService, private router: Router) { }
   userName!: any;
   userEmail!: any; 
   faUserCircle = faCircleUser;
@@ -40,6 +41,10 @@ export class HeaderComponent implements OnInit{
       }
     }
     const dialogRef = this.dialog.open(ProfileWindowDialogComponent, dialogConfig)
+  }
+
+  isCreatePage(): boolean {
+    return this.router.url === '/create';
   }
  
 }

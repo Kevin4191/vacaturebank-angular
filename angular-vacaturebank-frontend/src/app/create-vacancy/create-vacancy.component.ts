@@ -35,20 +35,14 @@ export class CreateVacancyComponent implements OnInit {
 
   onSubmit(): void {
     const formattedData = this.formatFormData(this.createVacancyForm.value);
-    console.log('Formatted Data:', formattedData);
     if (this.createVacancyForm.valid) {
-      this.createVacancyService.createVacancy(formattedData).subscribe(response => {
-        console.log('Vacancy created:', response);
-        // Handle successful response
-      }, error => {
-        console.error('Error creating vacancy:', error);
-        // Handle error response
-      });
+      this.createVacancyService.createVacancy(formattedData);
     }
   }
-  
+
 
   formatFormData(formData: any): any {
+
     return {
       vacancyId: "",
       vacancyName: formData.createVacancyName,
@@ -58,19 +52,19 @@ export class CreateVacancyComponent implements OnInit {
       vacancyLocation: formData.createVacancyLocation,
       vacancyWorkingHours: formData.createVacancyHours,
       vacancyUploadDate: "placeholder",
-      vacancyBranchesBranchId: 1, // Example branch ID
-      vacancyEmployersEmployerId: this.userId, // Example employer ID
+      vacancyBranchesBranchId: formData.createVacancyBranch.branchId,
+      vacancyEmployersEmployerId: this.userId,
     };
   }
 
-  fetchBranchList(){
+  fetchBranchList() {
     this.branchService.findAllBranches().subscribe(
       (data: Branch[]) => {
         this.branches = data;
         this.branches.forEach(branch => {
           this.brancheList.push(branch.branchName);
         });
-        console.log(this.brancheList);
+
       },
       (error: any) => {
         console.error('Error fetching vacancies:', error);

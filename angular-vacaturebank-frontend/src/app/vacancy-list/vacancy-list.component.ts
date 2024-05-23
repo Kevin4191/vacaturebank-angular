@@ -92,8 +92,6 @@ export class VacancyListComponent implements OnInit {
     if (this.filteredVacancies.length > 0) {
       this.selectedVacancy = this.filteredVacancies[0];
     }
-
-    console.log(localStorage.getItem('userRole'));
   }
 
   getIndex(vacancy: Vacancy) {
@@ -110,7 +108,6 @@ export class VacancyListComponent implements OnInit {
         this.branches.forEach(branch => {
           this.brancheList.push(branch.branchName);
         });
-        console.log(this.brancheList);
       },
       (error: any) => {
         console.error('Error fetching vacancies:', error);
