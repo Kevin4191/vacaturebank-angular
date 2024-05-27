@@ -40,6 +40,7 @@ export class CreateVacancyComponent implements OnInit {
       this.createVacancyService.createVacancy(formattedData);
       this.router.navigate(['/home']);
     }
+
   }
 
 

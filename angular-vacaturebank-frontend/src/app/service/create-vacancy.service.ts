@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
+import { json } from 'stream/consumers';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,14 @@ export class CreateVacancyService {
   }
 
 
-  public createVacancy(vacancyData: any): Observable<any[]> {
+  public createVacancy(vacancyData: any) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any[]>(this.vacancyUrl, JSON.stringify(vacancyData), { headers })
-      .pipe(
-        catchError(error => {
-          console.error('Error occurred:', error);
-          return throwError(error);
-        })
-      );
+    console.log(this.http.post(this.vacancyUrl, vacancyData).subscribe(
+      res => console.log(res),
+      err => console.log("error sending mail: ", err)
+    ))
   }
+
 
   public updateVacancy(vacancy: any, id: number): Observable<any[]> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
