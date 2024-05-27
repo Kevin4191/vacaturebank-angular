@@ -1,6 +1,7 @@
-*{
+* {
     overflow: hidden;
 }
+
 .dialog-header {
     height: 50px;
     width: 100%;
@@ -23,35 +24,37 @@
     overflow-y: hidden !important;
 }
 
-p { 
+p {
     margin: 5px;
     color: black;
     padding: 4px;
     background-color: rgb(249, 249, 249);
 }
+
 .mat-mdc-dialog-actions {
     justify-content: flex-end;
 }
-.mat-mdc-button{
+
+.mat-mdc-button {
     font-size: 10px;
 }
 
-.log-in-btn{
+.log-in-btn {
     align-self: center;
     margin-bottom: 5px;
     width: 150px;
     border-radius: 10px;
-    font-size: 15px ;
+    font-size: 15px;
     font-weight: bolder;
     color: white;
     background-color: #27C468;
 }
 
-.log-out-btn{
+.log-out-btn {
     width: 75px;
     border-radius: 10px;
-    font-size: 10px ;
+    font-size: 10px;
     font-weight: bolder;
-    color: white ;
+    color: white;
     background-color: red;
 }

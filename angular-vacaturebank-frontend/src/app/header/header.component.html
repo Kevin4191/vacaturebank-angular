@@ -6,8 +6,10 @@
         <a href="/home"></a>
       </div>
 
-      <div style="display: flex; justify-content: center;">
-        <a href="/create" *ngIf="userRole === 'employer' && !isCreatePage()"><button mat-flat-button type="button">Vacature Toevoegen</button></a>
+      <div style="display: flex; justify-content: center">
+        <a href="/create" *ngIf="userRole === 'employer' && !isCreatePage()"
+          ><button mat-flat-button type="button">Vacature Toevoegen</button></a
+        >
         <div class="profile-window">
           <div class="profile-window-img">
             <fa-icon

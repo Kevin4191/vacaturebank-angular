@@ -1,4 +1,4 @@
-.vacancy-filters{
+.vacancy-filters {
     display: flex;
     justify-content: center;
     background-color: white;
@@ -9,7 +9,7 @@
 }
 
 .vacancy-filters #functie,
-.vacancy-filters #plaats{
+.vacancy-filters #plaats {
     width: 220px;
     border-radius: 7px;
     border: 0px;
@@ -17,12 +17,12 @@
     padding-left: 5px;
 }
 
-.vacancy-filters #distance{
+.vacancy-filters #distance {
     height: 20px;
     width: 70px;
 }
 
-.vacancy-filters select{
+.vacancy-filters select {
     width: 110px;
     margin-top: 10px;
     border-radius: 7px;
@@ -31,22 +31,22 @@
     height: 30px;
 }
 
-#distanceOption{
+#distanceOption {
     margin-top: 0;
     height: 36px;
 }
 
-.vacancy-filters select::placeholder{
-    color:black;
+.vacancy-filters select::placeholder {
+    color: black;
 }
 
-.vacancy-filters div{
+.vacancy-filters div {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
-.vacancy-filters button{
+.vacancy-filters button {
     background-color: #27C468;
     color: white;
     width: 150px;
@@ -60,7 +60,7 @@
     justify-content: center;
 }
 
-.allVacancies{
+.allVacancies {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -83,7 +83,7 @@
     margin-top: 10px;
     background-color: white;
     margin-bottom: 10px;
-    
+
 }
 
 .vacancy-list .mat-mdc-list-item {
@@ -126,7 +126,8 @@
     font-size: 20px;
     font-weight: bolder;
 }
-.selected-vacancy .selected-vacancy-desc{
+
+.selected-vacancy .selected-vacancy-desc {
     margin-top: 10px;
     height: 250px;
     word-wrap: break-word;
@@ -158,10 +159,12 @@
 .selected-vacancy .mat-mdc-list-item .selected-vacancy-branch {
     margin-top: 8px;
 }
-.selected-vacancy .mat-mdc-list-item .sign-up-vacancy-btn-list-item{
+
+.selected-vacancy .mat-mdc-list-item .sign-up-vacancy-btn-list-item {
     height: auto;
 }
-.selected-vacancy .sign-up-vacancy-btn{
+
+.selected-vacancy .sign-up-vacancy-btn {
     position: flex;
     left: 190px;
     height: 50px;
@@ -172,7 +175,7 @@
     font-weight: bolder;
 }
 
-.edit-vacancy-btn{
+.edit-vacancy-btn {
     margin-top: 5px;
     position: flex;
     height: 50px;
@@ -184,11 +187,11 @@
 }
 
 
-.vacancy-lists .vacancy-list.selected{
+.vacancy-lists .vacancy-list.selected {
     border: 2px solid #2B568D;
 }
 
-.vacancy-list button{
+.vacancy-list button {
     background-color: #27C468 !important;
     color: white !important;
     width: 180px;

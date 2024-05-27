@@ -1,15 +1,15 @@
-.setWidth{
+.setWidth {
     width: 1140px;
     margin: auto
 }
 
-.container{
+.container {
     display: flex;
     height: 600px;
     margin-bottom: 10px;
 }
 
-.info{
+.info {
     background: linear-gradient(to bottom, #2c578e 0%, #4670a7 79%, #4a75ac 100%);
     height: 100%;
     width: 50%;
@@ -20,19 +20,19 @@
 }
 
 .info span,
-.info img{
+.info img {
     text-align: center;
     align-self: center;
 }
 
-.info span{
+.info span {
     color: white;
     font-size: 28px;
     font-weight: 700;
     margin-bottom: -30px;
 }
 
-.form{
+.form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,23 +42,23 @@
     border-radius: 0 15px 15px 0;
 }
 
-.vacancyForm{
+.vacancyForm {
     margin: auto;
     align-self: center;
     width: 78%;
 }
 
-.mat-mdc-dialog-content{
+.mat-mdc-dialog-content {
     display: flex;
     flex-wrap: wrap;
     column-gap: 10px;
 }
 
-.beschrijvingInput{
+.beschrijvingInput {
     width: 435px;
 }
 
-button{
+button {
     background-color: #27C468 !important;
     color: white !important;
     margin-top: -10px;

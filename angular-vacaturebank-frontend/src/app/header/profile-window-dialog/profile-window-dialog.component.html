@@ -1,26 +1,26 @@
 <div class="dialog-header">
-    <h2 mat-dialog-title>
-        <fa-icon [icon]="faUserCircle"></fa-icon>
-    </h2>
+  <h2 mat-dialog-title>
+    <fa-icon [icon]="faUserCircle"></fa-icon>
+  </h2>
 </div>
 
 <mat-dialog-content *ngIf="token; else loginPrompt">
-    <p>{{userName}}</p>
-    <p>{{userEmail}}</p>
+  <p>{{ userName }}</p>
+  <p>{{ userEmail }}</p>
 </mat-dialog-content>
 
 <ng-template #loginPrompt>
-    <mat-dialog-content>
-        <p>Druk op deze knop om in te loggen!</p>
-    </mat-dialog-content>
+  <mat-dialog-content>
+    <p>Druk op deze knop om in te loggen!</p>
+  </mat-dialog-content>
 
-
-
-    <button (click)="redirectToLogIn()" mat-button class="log-in-btn">Log in</button>
+  <button (click)="redirectToLogIn()" mat-button class="log-in-btn">
+    Log in
+  </button>
 </ng-template>
 
-
-
-<mat-dialog-actions *ngIf="token;">
-    <button (click)="logOut()" mat-button class="log-out-btn" color="warn">Uitloggen</button>
-  </mat-dialog-actions>
+<mat-dialog-actions *ngIf="token">
+  <button (click)="logOut()" mat-button class="log-out-btn" color="warn">
+    Uitloggen
+  </button>
+</mat-dialog-actions>

@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Vacancy } from '../model/vacancy';
-import { VacancyListComponent } from '../vacancy-list/vacancy-list.component';
 import { VacancyService } from '../service/vacancy-service.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Branch } from '../model/branch';
-import { CreateVacancyComponent } from '../create-vacancy/create-vacancy.component';
 import { CreateVacancyService } from '../service/create-vacancy.service';
 import { BranchService } from '../service/branch.service';
 
@@ -39,7 +37,7 @@ export class UpdateVacancyComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.vacancyId =  +params.get('id')!;
+      this.vacancyId = +params.get('id')!;
       console.log(this.vacancyId)
     })
     this.vacancyService.getVacancyById(this.vacancyId).subscribe(vacancy => {

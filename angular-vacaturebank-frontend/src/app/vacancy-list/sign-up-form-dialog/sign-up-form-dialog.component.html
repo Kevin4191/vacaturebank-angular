@@ -1,47 +1,59 @@
 <div class="sign-up-form">
-    <p mat-dialog-title>Sollicitatie formulier {{vacancy.vacancyName}} bij {{vacancy.employer.employerCompany}}</p>
+  <p mat-dialog-title>
+    Sollicitatie formulier {{ vacancy.vacancyName }} bij
+    {{ vacancy.employer.employerCompany }}
+  </p>
 
-    <mat-dialog-content [formGroup]="signInForm">
+  <mat-dialog-content [formGroup]="signInForm">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="name">
-        </mat-form-field>
+    <mat-form-field class="email-form">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
 
-        <mat-form-field class="email-form">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email">
-        </mat-form-field>
+    <input
+      type="file"
+      accept="application/pdf, application/msword, text/plain"
+      id="files"
+      class="file-input"
+      multiple
+      (change)="onFileSelected($event)"
+      #FileUpload
+      require
+    />
 
-        <input type="file" accept="application/pdf, application/msword, text/plain" id="files" class="file-input"
-            multiple (change)="onFileSelected($event)" #FileUpload require>
+    <label for="files" class="file-input-label"
+      ><fa-icon [icon]="faPaperclip"></fa-icon> Click hier om uw cv en/of
+      motivatiebrief te uploaden</label
+    >
 
-        <label for="files" class="file-input-label"><fa-icon [icon]="faPaperclip"></fa-icon> Click hier om uw cv en/of
-            motivatiebrief te uploaden</label>
-
-        <div class="file-upload">
-            <div *ngIf="fileNames.length > 0">
-                <p> bestanden gekozen: </p>
-                <div *ngFor="let fileName of fileNames;">
-                    {{ fileName }}
-                </div>
-            </div>
-
-            <ng-template [ngIf]="fileNames.length === 0">
-                <div>No files selected</div>
-            </ng-template>
-
+    <div class="file-upload">
+      <div *ngIf="fileNames.length > 0">
+        <p>bestanden gekozen:</p>
+        <div *ngFor="let fileName of fileNames">
+          {{ fileName }}
         </div>
-        <span class="file-error" *ngIf="this.noFileSelected">
-            Voer een bestand in
-        </span>
+      </div>
 
-    </mat-dialog-content>
+      <ng-template [ngIf]="fileNames.length === 0">
+        <div>No files selected</div>
+      </ng-template>
+    </div>
+    <span class="file-error" *ngIf="this.noFileSelected">
+      Voer een bestand in
+    </span>
+  </mat-dialog-content>
 
-
-    <mat-dialog-actions>
-        <button mat-button (click)="closeDialog()" class="cancel-button">Annuleren</button>
-        <button mat-button (click)="saveDialog()" class="send-button mat-primary">Versturen</button>
-
-    </mat-dialog-actions>
+  <mat-dialog-actions>
+    <button mat-button (click)="closeDialog()" class="cancel-button">
+      Annuleren
+    </button>
+    <button mat-button (click)="saveDialog()" class="send-button mat-primary">
+      Versturen
+    </button>
+  </mat-dialog-actions>
 </div>

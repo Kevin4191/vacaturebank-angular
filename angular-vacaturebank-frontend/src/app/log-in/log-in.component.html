@@ -34,7 +34,12 @@
           </span>
           <mat-form-field>
             <mat-label>Wachtwoord</mat-label>
-            <input matInput formControlName="userPassword" type="password"  (keyup.enter)="logIn()"/>
+            <input
+              matInput
+              formControlName="userPassword"
+              type="password"
+              (keyup.enter)="logIn()"
+            />
           </mat-form-field>
           <mat-action-list>
             <button mat-button (click)="logIn()" class="login-button">

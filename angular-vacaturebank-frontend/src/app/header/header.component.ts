@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProfileWindowDialogComponent } from './profile-window-dialog/profile-window-dialog.component';
-import { LogInComponent } from '../log-in/log-in.component';
-import { userDTO } from '../model/userDTO';
 import { UserService } from '../service/user-service.service';
 import { Router } from '@angular/router';
 @Component({
@@ -11,15 +9,15 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private userService: UserService, private router: Router) { }
   userName!: any;
-  userEmail!: any; 
+  userEmail!: any;
   faUserCircle = faCircleUser;
   userRole: any;
 
-  ngOnInit(){
+  ngOnInit() {
     this.userRole = localStorage.getItem('userRole');
   }
 
@@ -46,5 +44,5 @@ export class HeaderComponent implements OnInit{
   isCreatePage(): boolean {
     return this.router.url === '/create';
   }
- 
+
 }

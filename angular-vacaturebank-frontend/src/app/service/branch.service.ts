@@ -1,7 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
-import { Branch } from '../model/branch';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +12,7 @@ export class BranchService {
     this.branchUrl = 'http://localhost:8080/api/v1/branches';
   }
 
-  public findAllBranches():Observable<any[]> {
+  public findAllBranches(): Observable<any[]> {
     return this.http.get<any[]>(this.branchUrl);
   }
 

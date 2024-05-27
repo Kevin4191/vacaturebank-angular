@@ -1,9 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { mailStructure } from '../model/mailStructure';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs/internal/observable/throwError';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

@@ -25,15 +25,15 @@ export class CreateVacancyService {
       );
   }
 
-  public updateVacancy(vacancy: any, id: number): Observable<any[]>{
+  public updateVacancy(vacancy: any, id: number): Observable<any[]> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this.http.patch<any[]>(`${this.vacancyUrl}/patch/${id}`, JSON.stringify(vacancy), {headers})
+    return this.http.patch<any[]>(`${this.vacancyUrl}/patch/${id}`, JSON.stringify(vacancy), { headers })
       .pipe(
         catchError(error => {
-          console.error('Error occurred:', error);   console.log(vacancy)
-          return throwError(error); 
-          
+          console.error('Error occurred:', error); console.log(vacancy)
+          return throwError(error);
+
         })
       );
   }

@@ -1,151 +1,210 @@
 <div class="vacancy-filters">
-    <form [formGroup]="filters">
-        <div>
-            <input id="functie" type="text" formControlName="searchValue" placeholder="Functie"
-                [(ngModel)]="searchValue"  (keyup.enter)="filterVacancies()"/>
-            <input id="plaats" type="text" formControlName="searchLocation" placeholder="Plaats"
-            [(ngModel)]="searchLocation" />
-            <select formControlName="distanceOption" id="distanceOption">
-                <option value="" selected>0km</option>
-                <option [value]="5">5km</option>
-                <option [value]="10">10km</option>
-                <option [value]="15">15km</option>
-                <option [value]="20">20km</option>
-                <option [value]="25">25km</option>
-            </select>
-            <button mat-flat-button type="button" (click)="filterVacancies()">Zoeken</button>
-        </div>
-        <div>
-            <select formControlName="salaryOption" id="salaryOption" (change)="filterVacancies()">
-                <option value="" selected>Salaris</option>
-                <option *ngFor="let salary of salaryList" [value]="salary">
-                    {{ salary }}
-                </option>
-            </select>
-            <select formControlName="eduOption" id="eduOption" (change)="filterVacancies()">
-                <option value="" selected>Opleiding</option>
-                <option *ngFor="let edu of eduList" [value]="edu">
-                    {{ edu }}
-                </option>
-            </select>
-            <select formControlName="minHourOption" id="minHourOption" (change)="filterVacancies()">
-                <option value="" selected>Min. Uren</option>
-                <option *ngFor="let minHour of minHourList" [value]="minHour">
-                    {{ minHour }}
-                </option>
-            </select>
-            <select formControlName="maxHourOption" id="maxHourOption" (change)="filterVacancies()">
-                <option value="" selected>Max. Uren</option>
-                <option *ngFor="let maxHour of maxHourList" [value]="maxHour">
-                    {{ maxHour }}
-                </option>
-            </select>
-            <select formControlName="brancheOption" id="brancheOption" (change)="filterVacancies()">
-                <option value="" selected>Branche</option>
-                <option *ngFor="let branche of brancheList" [value]="branche">
-                    {{ branche }}
-                </option>
-            </select>
-        </div>
-    </form>
+  <form [formGroup]="filters">
+    <div>
+      <input
+        id="functie"
+        type="text"
+        formControlName="searchValue"
+        placeholder="Functie"
+        [(ngModel)]="searchValue"
+        (keyup.enter)="filterVacancies()"
+      />
+      <input
+        id="plaats"
+        type="text"
+        formControlName="searchLocation"
+        placeholder="Plaats"
+        [(ngModel)]="searchLocation"
+      />
+      <select formControlName="distanceOption" id="distanceOption">
+        <option value="" selected>0km</option>
+        <option [value]="5">5km</option>
+        <option [value]="10">10km</option>
+        <option [value]="15">15km</option>
+        <option [value]="20">20km</option>
+        <option [value]="25">25km</option>
+      </select>
+      <button mat-flat-button type="button" (click)="filterVacancies()">
+        Zoeken
+      </button>
+    </div>
+    <div>
+      <select
+        formControlName="salaryOption"
+        id="salaryOption"
+        (change)="filterVacancies()"
+      >
+        <option value="" selected>Salaris</option>
+        <option *ngFor="let salary of salaryList" [value]="salary">
+          {{ salary }}
+        </option>
+      </select>
+      <select
+        formControlName="eduOption"
+        id="eduOption"
+        (change)="filterVacancies()"
+      >
+        <option value="" selected>Opleiding</option>
+        <option *ngFor="let edu of eduList" [value]="edu">
+          {{ edu }}
+        </option>
+      </select>
+      <select
+        formControlName="minHourOption"
+        id="minHourOption"
+        (change)="filterVacancies()"
+      >
+        <option value="" selected>Min. Uren</option>
+        <option *ngFor="let minHour of minHourList" [value]="minHour">
+          {{ minHour }}
+        </option>
+      </select>
+      <select
+        formControlName="maxHourOption"
+        id="maxHourOption"
+        (change)="filterVacancies()"
+      >
+        <option value="" selected>Max. Uren</option>
+        <option *ngFor="let maxHour of maxHourList" [value]="maxHour">
+          {{ maxHour }}
+        </option>
+      </select>
+      <select
+        formControlName="brancheOption"
+        id="brancheOption"
+        (change)="filterVacancies()"
+      >
+        <option value="" selected>Branche</option>
+        <option *ngFor="let branche of brancheList" [value]="branche">
+          {{ branche }}
+        </option>
+      </select>
+    </div>
+  </form>
 </div>
 
 <div class="vacancy-lists">
-    <div class="allVacancies">
-        <span class="results">{{ filteredVacancies.length }} resultaten</span>
+  <div class="allVacancies">
+    <span class="results">{{ filteredVacancies.length }} resultaten</span>
 
-        <mat-list class="vacancy-list" (click)="getIndex(vacancy)" *ngFor="let vacancy of filteredVacancies"
-            [class.selected]="vacancy === selectedVacancy">
-
-            <mat-list-item>
-                <span matListItemTitle class="vacancy-name" style="font-size: 20px">{{
-                    this.vacancy.vacancyName
-                    }}</span>
-            </mat-list-item>
-            <mat-list-item>
-                <span matListItemTitle class="company-company">{{
-                    this.vacancy.employer.employerCompany
-                    }}</span>
-            </mat-list-item>
-            <mat-list-item>
-                <span matListItemTitle class="company-location">{{
-                    this.vacancy.vacancyLocation
-                    }}</span>
-            </mat-list-item>
-            <mat-list-item class="sub-list-mat">
-                <span matListItemTitle>
-                    <span class="sub-list">{{ this.vacancy.vacancySalary }}</span>
-                    <span class="sub-list">{{ this.vacancy.vacancyEducation }}</span>
-                    <span class="sub-list">{{ this.vacancy.vacancyWorkingHours }}</span>
-                </span>
-            </mat-list-item>
-        </mat-list>
-        <mat-list class="vacancy-list">
-            <mat-list-item>
-                <span matListItemTitle class="vacancy-name" style="font-size: 20px">Bent u een werkgever?<br>Voeg hier uw
-                    vacature toe!</span>
-                    <a href="/create" *ngIf="this.userRole === 'employer'"><button mat-flat-button type="button">Vacature Toevoegen</button></a>
-            </mat-list-item>
-        </mat-list>
-    </div>
-
-    <!-- Selected vacancies list -->
-    <mat-list class="selected-vacancy" *ngIf="selectedVacancy !== null">
-        <mat-list-item style="display: inline;">
-            <span matListItemTitle class="vacancy-name" style="font-size: 25px; float: left; margin-left: 10px;">
-                {{ selectedVacancy.vacancyName }}</span>
-                <span matListItemTitle style="font-size: 14px; float: right; margin-right: 15px;">
-                    {{ vacancyDate }}
-                </span>
-        </mat-list-item>
-        <mat-list-item>
-            <span matListItemTitle class="function-desc">Functieomschrijving</span>
-            <p matListItemLine class="selected-vacancy-desc">
-                {{ selectedVacancy.vacancyDescription }}
-            </p>
-        </mat-list-item>
-        <mat-list>
-            <mat-list-item>
-                <span matListItemTitle style="font-size: 20px; font-weight: bolder">Contact</span>
-            </mat-list-item>
-            <mat-list-item class="sub-list-contact-one">
-                <p matListItemTitle class="selected-vacancy-employer">
-                    <fa-icon [icon]="faUser"></fa-icon>
-                    {{ selectedVacancy.employer.user[0].userName }}
-                </p>
-                <p matListItemTitle class="selected-vacancy-location">
-                    <fa-icon [icon]="faLocationDot"></fa-icon>
-                    {{ selectedVacancy.vacancyLocation }}
-                </p>
-                <p matListItemTitle class="selected-vacancy-salary">
-                    <fa-icon [icon]="faEuroSign"></fa-icon>
-                    {{ selectedVacancy.vacancySalary }}
-                </p>
-            </mat-list-item>
-            <br />
-            <mat-list-item class="sub-list-contact-two">
-                <p matListItemTitle class="selected-vacancy-education">
-                    <fa-icon [icon]="faGraduationCap"></fa-icon>
-                    {{ selectedVacancy.vacancyEducation }}
-                </p>
-                <p matListItemTitle class="selected-vacancy-working-hours">
-                    <fa-icon [icon]="faClock"></fa-icon>
-                    {{ selectedVacancy.vacancyWorkingHours }}
-                </p>
-                <p matListItemTitle class="selected-vacancy-branch">
-                    <fa-icon [icon]="faScrewdriverWrench"></fa-icon>
-                    {{ selectedVacancy.branches.branchName }}
-                </p>
-                <button *ngIf="selectedVacancy.employer.employerEmail == this.userEmail; else signUp " (click)="editVacancy(selectedVacancy.vacancyId)" class="edit-vacancy-btn">Wijzig uw vacature</button>
-                <ng-template #signUp>
-                    <button mat-flat-button 
-                            (click)="openSignUpForm(selectedVacancy)" 
-                            class="sign-up-vacancy-btn">
-                      Inschrijven
-                    </button>
-                  </ng-template>
-              
-            </mat-list-item>
-        </mat-list>
+    <mat-list
+      class="vacancy-list"
+      (click)="getIndex(vacancy)"
+      *ngFor="let vacancy of filteredVacancies"
+      [class.selected]="vacancy === selectedVacancy"
+    >
+      <mat-list-item>
+        <span matListItemTitle class="vacancy-name" style="font-size: 20px">{{
+          this.vacancy.vacancyName
+        }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle class="company-company">{{
+          this.vacancy.employer.employerCompany
+        }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle class="company-location">{{
+          this.vacancy.vacancyLocation
+        }}</span>
+      </mat-list-item>
+      <mat-list-item class="sub-list-mat">
+        <span matListItemTitle>
+          <span class="sub-list">{{ this.vacancy.vacancySalary }}</span>
+          <span class="sub-list">{{ this.vacancy.vacancyEducation }}</span>
+          <span class="sub-list">{{ this.vacancy.vacancyWorkingHours }}</span>
+        </span>
+      </mat-list-item>
     </mat-list>
+    <mat-list class="vacancy-list">
+      <mat-list-item>
+        <span matListItemTitle class="vacancy-name" style="font-size: 20px"
+          >Bent u een werkgever?<br />Voeg hier uw vacature toe!</span
+        >
+        <a href="/create" *ngIf="this.userRole === 'employer'"
+          ><button mat-flat-button type="button">Vacature Toevoegen</button></a
+        >
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <!-- Selected vacancies list -->
+  <mat-list class="selected-vacancy" *ngIf="selectedVacancy !== null">
+    <mat-list-item style="display: inline">
+      <span
+        matListItemTitle
+        class="vacancy-name"
+        style="font-size: 25px; float: left; margin-left: 10px"
+      >
+        {{ selectedVacancy.vacancyName }}</span
+      >
+      <span
+        matListItemTitle
+        style="font-size: 14px; float: right; margin-right: 15px"
+      >
+        {{ vacancyDate }}
+      </span>
+    </mat-list-item>
+    <mat-list-item>
+      <span matListItemTitle class="function-desc">Functieomschrijving</span>
+      <p matListItemLine class="selected-vacancy-desc">
+        {{ selectedVacancy.vacancyDescription }}
+      </p>
+    </mat-list-item>
+    <mat-list>
+      <mat-list-item>
+        <span matListItemTitle style="font-size: 20px; font-weight: bolder"
+          >Contact</span
+        >
+      </mat-list-item>
+      <mat-list-item class="sub-list-contact-one">
+        <p matListItemTitle class="selected-vacancy-employer">
+          <fa-icon [icon]="faUser"></fa-icon>
+          {{ selectedVacancy.employer.user[0].userName }}
+        </p>
+        <p matListItemTitle class="selected-vacancy-location">
+          <fa-icon [icon]="faLocationDot"></fa-icon>
+          {{ selectedVacancy.vacancyLocation }}
+        </p>
+        <p matListItemTitle class="selected-vacancy-salary">
+          <fa-icon [icon]="faEuroSign"></fa-icon>
+          {{ selectedVacancy.vacancySalary }}
+        </p>
+      </mat-list-item>
+      <br />
+      <mat-list-item class="sub-list-contact-two">
+        <p matListItemTitle class="selected-vacancy-education">
+          <fa-icon [icon]="faGraduationCap"></fa-icon>
+          {{ selectedVacancy.vacancyEducation }}
+        </p>
+        <p matListItemTitle class="selected-vacancy-working-hours">
+          <fa-icon [icon]="faClock"></fa-icon>
+          {{ selectedVacancy.vacancyWorkingHours }}
+        </p>
+        <p matListItemTitle class="selected-vacancy-branch">
+          <fa-icon [icon]="faScrewdriverWrench"></fa-icon>
+          {{ selectedVacancy.branches.branchName }}
+        </p>
+        <button
+          *ngIf="
+            selectedVacancy.employer.employerEmail == this.userEmail;
+            else signUp
+          "
+          (click)="editVacancy(selectedVacancy.vacancyId)"
+          class="edit-vacancy-btn"
+        >
+          Wijzig uw vacature
+        </button>
+        <ng-template #signUp>
+          <button
+            mat-flat-button
+            (click)="openSignUpForm(selectedVacancy)"
+            class="sign-up-vacancy-btn"
+          >
+            Inschrijven
+          </button>
+        </ng-template>
+      </mat-list-item>
+    </mat-list>
+  </mat-list>
 </div>

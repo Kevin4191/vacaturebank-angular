@@ -4,7 +4,7 @@ import { Branch } from '../model/branch';
 import { VacancyService } from '../service/vacancy-service.service';
 import { BranchService } from '../service/branch.service';
 import { CommonModule } from '@angular/common';
-import { MatListModule, MatSelectionList } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { UserService } from '../service/user-service.service';
@@ -21,9 +21,8 @@ import { SharedModule } from '../shared/shared.module';
 import { FilterPipe } from '../filter.pipe';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
-import { userDTO } from '../model/userDTO';
-import { Route, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vacancy-list',
@@ -81,7 +80,7 @@ export class VacancyListComponent implements OnInit {
   userRole: any;
   userEmail: any;
 
-  constructor(private vacancyService: VacancyService, private branchService: BranchService ,private userService: UserService, private filterPipe: FilterPipe, private http: HttpClient, private mailService: MailService, public dialog: MatDialog, private router: Router) {
+  constructor(private vacancyService: VacancyService, private branchService: BranchService, private userService: UserService, private filterPipe: FilterPipe, private http: HttpClient, private mailService: MailService, public dialog: MatDialog, private router: Router) {
 
   }
 
@@ -104,7 +103,7 @@ export class VacancyListComponent implements OnInit {
     this.vacancyDate = vacancyDateSplit ? vacancyDateSplit[0] : undefined;
   }
 
-  fetchBranchList(){
+  fetchBranchList() {
     this.branchService.findAllBranches().subscribe(
       (data: Branch[]) => {
         this.branches = data;
@@ -146,8 +145,8 @@ export class VacancyListComponent implements OnInit {
       this.postMail(res.mail, res.files);
     })
   }
-  editVacancy(vacancyId: number){
-    this.router.navigate(['/update',vacancyId]);
+  editVacancy(vacancyId: number) {
+    this.router.navigate(['/update', vacancyId]);
   }
   postMail(mail: mailStructure, files: FormData) {
     this.mailService.postMail(mail, files);

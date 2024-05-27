@@ -1,9 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { userDTO } from '../../model/userDTO';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { UserService } from '../../service/user-service.service';
 import { AuthService } from '../../auth.service';
 
 @Component({
@@ -20,10 +18,10 @@ export class ProfileWindowDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<ProfileWindowDialogComponent>,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.token = localStorage.getItem('token');  
+    this.token = localStorage.getItem('token');
     this.userName = localStorage.getItem('userName');
     this.userEmail = localStorage.getItem('userEmail');
   }

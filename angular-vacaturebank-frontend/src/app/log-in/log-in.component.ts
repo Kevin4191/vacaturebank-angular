@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../service/user-service.service';
-import { userDTO } from '../model/userDTO';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -16,7 +14,7 @@ export class LogInComponent implements OnInit {
   userPassword: string = '';
   noEmail = false;
   noPassword = false;
-  
+
 
   constructor(private userService: UserService, private router: Router) {
     this.logInForm = new FormGroup({
@@ -54,7 +52,7 @@ export class LogInComponent implements OnInit {
           localStorage.setItem('token', sessionId);
           localStorage.setItem('userName', res.body.userName);
           localStorage.setItem('userEmail', res.body.userEmail);
-          localStorage.setItem('userRole', res.body.userRole );
+          localStorage.setItem('userRole', res.body.userRole);
           localStorage.setItem('userId', res.body.employersEmployerId);
           this.userService.userDTO = res.body;
           this.router.navigate(['/home']);

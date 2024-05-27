@@ -20,9 +20,9 @@ export class UserService {
   public findAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl);
   }
-  
+
   public postUser(logIn: any): Observable<any> {
-    return this.http.post(this.logInUrl, logIn,  { observe: 'response' }).pipe(
+    return this.http.post(this.logInUrl, logIn, { observe: 'response' }).pipe(
       catchError(error => {
         if (error.status === 401) {
           return of(null as userDTO | null);
